@@ -1,24 +1,23 @@
 # Docker_and_AWS
 
-```# 🚀 Spring Boot Microservice on AWS EKS with Docker, Lambda, SDK & CI/CD
+# 🚀 Spring Boot Microservice on AWS EKS with Docker, Lambda, SDK & CI/CD
 📸 Project Overview
-
-A full-stack backend project built with **Spring Boot** and deployed using **Docker**, **Kubernetes**, and **AWS EKS**, with integrated **AWS Lambda** for serverless functions, the **AWS SDK** for cloud service interaction, and a fully automated **CI/CD pipeline** for seamless deployments.
+```
+A backend project built with Spring Boot and deployed using Docker, Kubernetes, and AWS EKS, with integrated AWS Lambda for serverless functions, the AWS SDK for cloud service interaction, and an automated CI/CD pipeline for seamless deployments.
 
 This microservice demonstrates a cloud-native architecture utilizing:
-- **Spring Boot** for backend service logic
-- **Docker** for containerization
-- **Kubernetes on AWS EKS** for orchestration and scaling
-- **AWS Lambda** for event-driven serverless tasks
-- **AWS SDK** for integrating with AWS services (like S3, DynamoDB, SNS, etc.)
-- **CI/CD pipeline** with AWS CodePipeline & CodeBuild
+- Spring Boot for backend service logic
+- Docker for containerization
+- Kubernetes on AWS EKS for orchestration and scaling
+- AWS Lambda for event-driven serverless tasks
+- AWS SDK for integrating with AWS service S3.
+- CI/CD pipeline with AWS CodePipeline & CodeBuild
 
----
 ```
 ## 🧰 Tech Stack
-
+```
 | Technology      | Purpose                                         |
-|----------------|--------------------------------------------------|
+|-----------------|-------------------------------------------------|
 | Spring Boot     | RESTful API backend                             |
 | Docker          | Containerize the application                    |
 | Kubernetes (EKS)| Deployment and orchestration on AWS             |
@@ -26,14 +25,17 @@ This microservice demonstrates a cloud-native architecture utilizing:
 | AWS SDK         | Access AWS services from Java code              |
 | CI/CD Pipeline  | Automate build & deploy via AWS CodePipeline    |
 
----
 ```
 🔨 Build & Run
 ```
 🐳 Step 1: Dockerize the Application
 
 ```bash
-docker build -t springboot-eks-app .
+docker build -t plantopia .
+```bash
+docker run -p plantopia
+
+The application will be accessible at http://localhost:8080.
 ```
 
 ### ⚙️ Step 2: Push Docker Image to ECR
