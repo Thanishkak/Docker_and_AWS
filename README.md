@@ -1,58 +1,30 @@
 # Docker_and_AWS
-Sure! Here's a **creative, professional, and engaging `README.md`** file structure for your Spring Boot project, integrating Docker, Kubernetes, AWS EKS, Lambda, SDK, and a CI/CD pipeline — including sections where you can embed your screenshots 📸.
-
----
-
 ```markdown
-# 🚀 Spring Boot Microservice on AWS EKS with Docker, Lambda, SDK & CI/CD
+🚀 **Spring Boot Microservice on AWS EKS with Docker, Lambda, SDK & CI/CD**
 
-A full-stack backend project built with **Spring Boot** and deployed using **Docker**, **Kubernetes**, and **AWS EKS**, with integrated **AWS Lambda** for serverless functions, the **AWS SDK** for cloud service interaction, and a fully automated **CI/CD pipeline** for seamless deployments.
-
----
-
-## 📸 Project Overview
-
-![Project Architecture](![Uploading Screenshot 2025-04-14 172813.png…]()
-)
+📸 **Project Overview**
+A backend project built with Spring Boot and deployed using Docker, Kubernetes, and AWS EKS, with integrated AWS Lambda for serverless functions, the AWS SDK for cloud service interaction, and a fully automated CI/CD pipeline for seamless deployments.
 
 This microservice demonstrates a cloud-native architecture utilizing:
 - **Spring Boot** for backend service logic
 - **Docker** for containerization
 - **Kubernetes on AWS EKS** for orchestration and scaling
 - **AWS Lambda** for event-driven serverless tasks
-- **AWS SDK** for integrating with AWS services (like S3, DynamoDB, SNS, etc.)
+- **AWS SDK** for integrating with AWS service S3.
 - **CI/CD pipeline** with AWS CodePipeline & CodeBuild
 
 ---
 
-## 🧰 Tech Stack
+🧰 **Tech Stack**
 
-| Technology      | Purpose                                         |
-|----------------|--------------------------------------------------|
+| **Technology**  | **Purpose**                                     |
+|-----------------|-------------------------------------------------|
 | Spring Boot     | RESTful API backend                             |
 | Docker          | Containerize the application                    |
 | Kubernetes (EKS)| Deployment and orchestration on AWS             |
 | AWS Lambda      | Serverless functions for async tasks            |
 | AWS SDK         | Access AWS services from Java code              |
 | CI/CD Pipeline  | Automate build & deploy via AWS CodePipeline    |
-
----
-
-## 📁 Project Structure
-
-```
-├── src/
-│   └── main/
-│       ├── java/
-│       └── resources/
-├── Dockerfile
-├── deployment/
-│   ├── deployment.yaml
-│   └── service.yaml
-├── .github/workflows/
-│   └── ci-cd-pipeline.yaml (or AWS buildspec.yml)
-├── README.md
-```
 
 ---
 
@@ -111,21 +83,7 @@ kubectl apply -f deployment/service.yaml
 
 ## 📦 AWS Lambda Integration
 
-Lambda function for asynchronous tasks like:
-- Email notifications
-- Database updates
-- Event listeners
-
-```java
-public class MyLambdaHandler implements RequestHandler<Map<String, Object>, String> {
-    @Override
-    public String handleRequest(Map<String, Object> event, Context context) {
-        // Handle event
-        return "Lambda Executed";
-    }
-}
-```
-
+Lambda function 
 ---
 
 ## 🔌 AWS SDK Integration
@@ -149,17 +107,11 @@ s3.putObject(PutObjectRequest.builder().bucket("my-bucket").key("file.txt").buil
 
 ---
 
-## ✅ Final Output
-
-![Final](screenshots/final-ui.png)
-
----
-
 ## 🧠 Learnings
 
-- How to deploy and scale microservices using AWS EKS
-- CI/CD automation with AWS native tools
-- Best practices in cloud-native application design
+✅ How to deploy and scale microservices using AWS EKS
+✅ CI/CD automation with AWS native tools
+✅ Best practices in cloud-native application design
 
 ---
 
