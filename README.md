@@ -84,22 +84,7 @@ kubectl apply -f deployment/service.yaml
 
 ## 📦 AWS Lambda Integration
 
-Lambda function for asynchronous tasks like:
-- Email notifications
-- Database updates
-- Event listeners
-
-```java
-public class MyLambdaHandler implements RequestHandler<Map<String, Object>, String> {
-    @Override
-    public String handleRequest(Map<String, Object> event, Context context) {
-        // Handle event
-        return "Lambda Executed";
-    }
-}
-```
-
----
+Lambda 
 
 ## 🔌 AWS SDK Integration
 
@@ -113,56 +98,22 @@ s3.putObject(PutObjectRequest.builder().bucket("my-bucket").key("file.txt").buil
 ---
 
 ## 🚀 CI/CD Pipeline (AWS CodePipeline + CodeBuild)
-
+```
 1. Code pushed to GitHub/CodeCommit.
 2. Build triggered in **AWS CodeBuild** using `buildspec.yml`.
 3. Docker image built and pushed to ECR.
 4. Kubernetes manifest applied using `kubectl` inside CodeBuild.
 5. Deployed live to AWS EKS 🚀
-
----
-
-## ✅ Final Output
-
-![Final](screenshots/final-ui.png)
-
----
-
-## 📚 Future Improvements
-
-- Add monitoring with **Prometheus + Grafana**
-- Integrate API Gateway for routing to Lambda
-- Add service mesh with **Istio**
-
----
-
-## 🧠 Learnings
-
-- How to deploy and scale microservices using AWS EKS
-- CI/CD automation with AWS native tools
-- Best practices in cloud-native application design
-
----
-
-## 🙌 Special Thanks
-
-To AWS documentation, the Spring community, and all open-source contributors whose tools made this project possible.
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License.
-
----
-
 ```
 
----
+## 🧠 Learnings
+```
+✅ How to deploy and scale microservices using AWS EKS
+✅ CI/CD automation with AWS native tools
+✅ Best practices in cloud-native application design
+```
 
-### 👉 What You Need to Do:
-- Replace `screenshots/...` with actual image file names and paths from your screenshots folder.
-- If you're using GitHub Actions or Jenkins instead of AWS CodePipeline, tweak the CI/CD section accordingly.
-- Add any links, badges, or references as needed.
-
-Would you like help uploading this to GitHub or need a sample repo structure too?
+## 🙌 Special Thanks
+```
+To AWS documentation, the Spring community, and all open-source contributors whose tools made this project possible.
+```
