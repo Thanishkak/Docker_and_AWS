@@ -69,7 +69,8 @@ kubectl apply -f deployment/service.yaml
 ## 🖼 Screenshots
 
 ### 🧱 Docker Container Running
-![Docker](screenshots/docker.png)
+![Docker](![Screenshot 2025-04-14 172813](https://github.com/user-attachments/assets/d95f9c05-6df9-4127-9531-ab30898f12b0)
+)
 
 ### ☸️ EKS Deployment
 ![EKS Pods](screenshots/eks-pods.png)
