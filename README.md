@@ -61,6 +61,9 @@ eksctl create cluster --name my-cluster --region us-east-1 --nodes 2 --node-type
 kubectl apply -f deployment/deployment.yaml
 kubectl apply -f deployment/service.yaml
 ```
+### ☸️ EKS Deployment
+(![Screenshot 2025-04-14 172813](https://github.com/user-attachments/assets/d95f9c05-6df9-4127-9531-ab30898f12b0))
+(![Screenshot 2025-04-14 173001](https://github.com/user-attachments/assets/4468a09e-d65c-4df5-b4d3-e3579ac59cea))
 
 > ✅ Your Spring Boot app is now running on AWS EKS!
 
@@ -69,23 +72,19 @@ kubectl apply -f deployment/service.yaml
 ## 🖼 Screenshots
 
 ### 🧱 Docker Container Running
-![Docker](![Screenshot 2025-04-14 172813](https://github.com/user-attachments/assets/d95f9c05-6df9-4127-9531-ab30898f12b0)
-)
 
-### ☸️ EKS Deployment
-![EKS Pods](screenshots/eks-pods.png)
-
-### 📦 Lambda Function Setup
-![Lambda](screenshots/lambda.png)
 
 ### 📂 CI/CD Pipeline in Action
 ![CI/CD](screenshots/cicd-pipeline.png)
 
 ---
 
-## 📦 AWS Lambda Integration
+## 📦 Lambda Function 
+(![Screenshot 2025-04-14 173418](https://github.com/user-attachments/assets/f873cf4f-030a-4645-bb6e-70538950d9f0)
+)
+AWS Lambda Integration
 
-Lambda 
+
 
 ## 🔌 AWS SDK Integration
 
