@@ -12,7 +12,8 @@ A full-stack backend project built with **Spring Boot** and deployed using **Doc
 
 ## 📸 Project Overview
 
-![Project Architecture](https://pwc-my.sharepoint.com/:i:/p/thanishka_k/EW4NDe7WR7RNhSdYiuXzpioBpr9jW0bdCxTsudRvJOTf4A)
+![Project Architecture](![Uploading Screenshot 2025-04-14 172813.png…]()
+)
 
 This microservice demonstrates a cloud-native architecture utilizing:
 - **Spring Boot** for backend service logic
