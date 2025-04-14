@@ -27,9 +27,9 @@ This microservice demonstrates a cloud-native architecture utilizing:
 | CI/CD Pipeline  | Automate build & deploy via AWS CodePipeline    |
 
 ---
-
+```
 🔨 Build & Run
-
+```
 🐳 Step 1: Dockerize the Application
 
 ```bash
