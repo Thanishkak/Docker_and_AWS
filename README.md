@@ -1,23 +1,28 @@
 # Docker_and_AWS
 ```markdown
-## 🚀 **Spring Boot Microservice on AWS EKS with Docker, Lambda, SDK & CI/CD**
+# 🚀 Spring Boot Microservice on AWS EKS with Docker, Lambda, SDK & CI/CD
 
-## 📸 **Project Overview**
-A backend project built with Spring Boot and deployed using Docker, Kubernetes, and AWS EKS, with integrated AWS Lambda for serverless functions, the AWS SDK for cloud service interaction, and a fully automated CI/CD pipeline for seamless deployments.
+A full-stack backend project built with **Spring Boot** and deployed using **Docker**, **Kubernetes**, and **AWS EKS**, with integrated **AWS Lambda** for serverless functions, the **AWS SDK** for cloud service interaction, and a fully automated **CI/CD pipeline** for seamless deployments.
+
+---
+
+## 📸 Project Overview
+
+![Project Architecture](screenshots/architecture.png)
 
 This microservice demonstrates a cloud-native architecture utilizing:
 - **Spring Boot** for backend service logic
 - **Docker** for containerization
 - **Kubernetes on AWS EKS** for orchestration and scaling
 - **AWS Lambda** for event-driven serverless tasks
-- **AWS SDK** for integrating with AWS service S3.
+- **AWS SDK** for integrating with AWS services (like S3, DynamoDB, SNS, etc.)
 - **CI/CD pipeline** with AWS CodePipeline & CodeBuild
 
 ---
 
-## 🧰 **Tech Stack**
+## 🧰 Tech Stack
 
-| **Technology**  | **Purpose**                                     |
+| Technology      | Purpose                                         |
 |-----------------|-------------------------------------------------|
 | Spring Boot     | RESTful API backend                             |
 | Docker          | Containerize the application                    |
