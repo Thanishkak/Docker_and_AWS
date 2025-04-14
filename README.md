@@ -1,18 +1,9 @@
 # Docker_and_AWS
-Sure! Here's a **creative, professional, and engaging `README.md`** file structure for your Spring Boot project, integrating Docker, Kubernetes, AWS EKS, Lambda, SDK, and a CI/CD pipeline — including sections where you can embed your screenshots 📸.
 
----
-
-```markdown
-# 🚀 Spring Boot Microservice on AWS EKS with Docker, Lambda, SDK & CI/CD
+```# 🚀 Spring Boot Microservice on AWS EKS with Docker, Lambda, SDK & CI/CD
+📸 Project Overview
 
 A full-stack backend project built with **Spring Boot** and deployed using **Docker**, **Kubernetes**, and **AWS EKS**, with integrated **AWS Lambda** for serverless functions, the **AWS SDK** for cloud service interaction, and a fully automated **CI/CD pipeline** for seamless deployments.
-
----
-
-## 📸 Project Overview
-
-![Project Architecture](screenshots/architecture.png)
 
 This microservice demonstrates a cloud-native architecture utilizing:
 - **Spring Boot** for backend service logic
@@ -23,7 +14,7 @@ This microservice demonstrates a cloud-native architecture utilizing:
 - **CI/CD pipeline** with AWS CodePipeline & CodeBuild
 
 ---
-
+```
 ## 🧰 Tech Stack
 
 | Technology      | Purpose                                         |
@@ -37,27 +28,9 @@ This microservice demonstrates a cloud-native architecture utilizing:
 
 ---
 
-## 📁 Project Structure
+🔨 Build & Run
 
-```
-├── src/
-│   └── main/
-│       ├── java/
-│       └── resources/
-├── Dockerfile
-├── deployment/
-│   ├── deployment.yaml
-│   └── service.yaml
-├── .github/workflows/
-│   └── ci-cd-pipeline.yaml (or AWS buildspec.yml)
-├── README.md
-```
-
----
-
-## 🔨 Build & Run
-
-### 🐳 Step 1: Dockerize the Application
+🐳 Step 1: Dockerize the Application
 
 ```bash
 docker build -t springboot-eks-app .
@@ -70,7 +43,6 @@ docker tag springboot-eks-app <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/s
 docker push <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/springboot-eks-app
 ```
 
----
 
 ## ☁️ Kubernetes Deployment (AWS EKS)
 
