@@ -1,8 +1,8 @@
 # Docker_and_AWS
 ```markdown
-##🚀 **Spring Boot Microservice on AWS EKS with Docker, Lambda, SDK & CI/CD**
+## 🚀 **Spring Boot Microservice on AWS EKS with Docker, Lambda, SDK & CI/CD**
 
-##📸 **Project Overview**
+## 📸 **Project Overview**
 A backend project built with Spring Boot and deployed using Docker, Kubernetes, and AWS EKS, with integrated AWS Lambda for serverless functions, the AWS SDK for cloud service interaction, and a fully automated CI/CD pipeline for seamless deployments.
 
 This microservice demonstrates a cloud-native architecture utilizing:
@@ -15,7 +15,7 @@ This microservice demonstrates a cloud-native architecture utilizing:
 
 ---
 
-##🧰 **Tech Stack**
+## 🧰 **Tech Stack**
 
 | **Technology**  | **Purpose**                                     |
 |-----------------|-------------------------------------------------|
@@ -28,9 +28,9 @@ This microservice demonstrates a cloud-native architecture utilizing:
 
 ---
 
-##🔨 Build & Run
+## 🔨 Build & Run
 
-🐳 Step 1: Dockerize the Application
+### 🐳 Step 1: Dockerize the Application
 
 ```bash
 docker build -t plantopia .
