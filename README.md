@@ -26,21 +26,19 @@ This microservice demonstrates a cloud-native architecture utilizing:
 | CI/CD Pipeline  | Automate build & deploy via AWS CodePipeline    |
 
 ```
-🔨 Build & Run
-```
-🐳 Step 1: Dockerize the Application
+## 🔨 Build & Run
 
+🐳 Step 1: Dockerize the Application
+```
 ```bash
 docker build -t plantopia .
 ```bash
 docker run -p plantopia
 
-The application will be accessible at http://localhost:8080.
-
-🧱 Docker Container Running
+🧱 Docker Container Running images
 ```
 
-### ⚙️ Step 2: Push Docker Image to ECR
+⚙️ Step 2: Push Docker Image to ECR
 
 
 ## ☁️ Kubernetes Deployment (AWS EKS)
