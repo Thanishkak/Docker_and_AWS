@@ -1,6 +1,6 @@
 # Docker_and_AWS
 
-# 🚀 Spring Boot Microservice on AWS EKS with Docker, Lambda, SDK & CI/CD
+# 🚀 AWS EKS, Docker, Lambda, SDK & CI/CD in Spring Boot Microservice
 # 📸 Project Overview
 ```
 A backend project built with Spring Boot and deployed using Docker, Kubernetes, and AWS EKS, with integrated AWS Lambda for serverless functions, the AWS SDK for cloud service interaction, and an automated CI/CD pipeline for seamless deployments.
@@ -42,89 +42,29 @@ docker run -p 8080:8080 plantopia
 🧱 Docker Container Running images
 
 ## 🌱 Minikube & Kubernetes
-
 ### ⚙️ 1. Start Minikube
-
 ```bash
 minikube start
 minikube status
 ```
-
----
-
 ### 🚀 2. Load Your Spring Boot Docker Image into Minikube
-
 Make sure you've built your Docker image:
-
 ```bash
 # Build your JAR file
 ./mvnw clean package
-
 # Build Docker image (from project root where Dockerfile is)
 docker build -t plantopia-app .
 ```
-
 Then load it into Minikube:
-
 ```bash
 minikube image load plantopia-app
 ```
-
----
-
 ### ⚙️ 3. Set `kubectl` Context to Minikube
-
 ```bash
 kubectl config use-context minikube
 ```
-
----
-
-### ☁️ 4. Apply Kubernetes Deployment and Service
-
-> Make sure your YAML files are named something like `plantopia.deployment.yaml` and `plantopia.service.yaml`.
-
-```bash
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-```
-
----
-
-### 📝 6. Check Pods
-
-```bash
-kubectl get pods
-```
-
----
-
-### ✅ 7. Get App URL (access from browser)
-
-```bash
-minikube service plantopia-service --url
-```
-
----
-
-### 📝 8. View Logs (for debugging)
-
-```bash
-kubectl logs <pod-name>
-```
-
-You can get the pod name using:
-
-```bash
-kubectl get pods
-```
-
----
-
-## 📝 Kubernetes YAML Files 
-
-### `deployment.yaml`
-
+### 📝 4. Kubernetes YAML Files 
+#### `deployment.yaml`
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -147,11 +87,8 @@ spec:
         ports:
         - containerPort: 8080
 ```
-
 ---
-
-### `service.yaml`
-
+#### `service.yaml`
 ```yaml
 apiVersion: v1
 kind: Service
@@ -166,77 +103,69 @@ spec:
       targetPort: 8080
       nodePort: 30007
 ```
-
+```
+### ☁️ 5. Apply Kubernetes Deployment and Service
+```bash
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+### ✅ 6. Check Pods
+```bash
+kubectl get pods
+```
+### 🖼 7. Get App URL (access from browser)
+```bash
+minikube service plantopia-service --url
+```
+### 📝 8. View Logs (for debugging)
+```bash
+kubectl logs <pod-name>
+```
+Get the pod name using:
+```bash
+kubectl get pods
+```
 ---
+
 ## ☸️ AWS EKS & IAM
 ### ☁️ Step 1: Push Docker Image to Amazon ECR
-
 1. **🛠Create ECR Repository**: Go to AWS Console > ECR > Create Repository.
-
 2. **Authenticate Docker:**
-
 ```bash
 aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
 ```
-
 3. **Tag & Push Image**:
-
 ```bash
 docker tag plantopia-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/plantopia-app:latest
 docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/plantopia-app:latest
 ```
-
----
-
 ### 🌟 Step 2: Create Your EKS Cluster
-
 **Using AWS Console**
-
 - Go to **EKS > Clusters > Create Cluster**.
 - Choose name (e.g., `plantopia-cluster`), IAM roles, VPC, subnets, etc.
 - Create Node Group.
-
 Create the cluster:
-
 ```bash
 eksctl create cluster -f cluster-config.yaml
 ```
-
----
-
 ### 🔧 **Step 3: Configure kubectl**
-
 ```bash
 aws eks --region us-east-1 update-kubeconfig --name plantopia-cluster
 kubectl get nodes
 ```
-
----
-
 ### 🚢 **Step 4: Deploy Your Spring Boot App on EKS**
-
 ### 🌍 **Step 5: Access Your Spring Boot Application**
-
 ```bash
 kubectl get svc
 ```
-
-Wait for the external IP and access in the browser:
-
 ```
 http://<external-ip>
 ```
-
----
-
 ### 🛡️ **Step 6: IAM Roles & Permissions**
-
 1. **Create IAM Role for EKS**:
    - Attach: **AmazonEKSClusterPolicy**, **AmazonEKSWorkerNodePolicy**, **AmazonEC2ContainerRegistryReadOnly**.
-
 2. **Configure EKS Node Role**:
    - Ensure EKS worker nodes have permission to pull images from ECR.
-
 ---
 ## 🖼 Screenshots
 
@@ -245,23 +174,62 @@ http://<external-ip>
 
 ---
 
-## 📦 Lambda Function 
-(![Screenshot 2025-04-14 173418](https://github.com/user-attachments/assets/f873cf4f-030a-4645-bb6e-70538950d9f0)
-)
-AWS Lambda Integration
-
-
-
-## 🔌 AWS SDK Integration
-
-Used AWS SDK (v2) to connect with AWS services directly from the app.
-
-```java
-S3Client s3 = S3Client.builder().region(Region.US_EAST_1).build();
-s3.putObject(PutObjectRequest.builder().bucket("my-bucket").key("file.txt").build(), Paths.get("file.txt"));
+## 🌟 Lambda Function 
+![Screenshot 2025-04-14 173418](https://github.com/user-attachments/assets/f873cf4f-030a-4645-bb6e-70538950d9f0)
+### 📦 Step 1: Package Spring Boot Application 
+1. **Create the Spring Boot JAR**:
+   ```bash
+   ./mvnw clean package
+   ```
+2. **Prepare for Lambda Deployment**:
+   ```xml
+   <dependencies>
+       <dependency>
+           <groupId>com.amazonaws.serverless</groupId>
+           <artifactId>aws-serverless-java-container-springboot2</artifactId>
+           <version>1.7.1</version>
+       </dependency>
+   </dependencies>
+   ```
+### 💻 Step 2: Zip Your Lambda Code 
+1. **Create a Zip File** for your Lambda function code:
+   ```bash
+   # Package your Spring Boot app into a JAR
+   ./mvnw clean package
+   # Zip the JAR file for Lambda deployment
+   zip -r function.zip target/plantopia-app.jar
+   ```
+### 🧪 Step 3: Test the Lambda Function 🧪
+```bash
+aws lambda invoke --function-name MyLambdaFunction output.txt
 ```
-
+### 🛠 Step 4: IAM Roles & Permissions 
+- `AWSLambdaBasicExecutionRole`
+- `AWSLambdaVPCAccessExecutionRole`
+### 🧹 Step 5: Clean Up Resources 
+```bash
+eksctl delete cluster --name plantopia-cluster
+```
 ---
+
+## 🌟 AWS SDK Integration in Spring Boot 
+
+### 🛠️ Step 1: Add AWS SDK Dependencies in `pom.xml` 📝
+### 🌍 Step 2: Configure AWS Credentials 🔑
+   ```bash
+   aws configure
+   ```
+Provide your **AWS Access Key ID**, **AWS Secret Access Key**, **region**, and **output format**.
+### 🚀 Step 3: Create a Service Class to Use AWS SDK 🧑‍💻
+Create a service class that interacts with **Amazon S3** and **DynamoDB**.
+### ⚙️ Step 4: Set Up AWS SDK Configuration 🛠️
+Create a configuration class to set up the **Amazon S3** and **DynamoDB** clients.
+### 🧪 Step 5: Using AWS SDK in Your Controller 📱
+Create a **REST controller** to test the AWS SDK integration.
+### 🔐 Step 7: IAM Roles & Permissions 🔑
+- **S3 Permissions:** `AmazonS3FullAccess`
+- **DynamoDB Permissions:** `AmazonDynamoDBFullAccess`
+
 
 ## 🚀 CI/CD Pipeline (AWS CodePipeline + CodeBuild)
 ```
@@ -270,16 +238,4 @@ s3.putObject(PutObjectRequest.builder().bucket("my-bucket").key("file.txt").buil
 3. Docker image built and pushed to ECR.
 4. Kubernetes manifest applied using `kubectl` inside CodeBuild.
 5. Deployed live to AWS EKS 🚀
-```
-
-## 🧠 Learnings
-```
-✅ How to deploy and scale microservices using AWS EKS
-✅ CI/CD automation with AWS native tools
-✅ Best practices in cloud-native application design
-```
-
-## 🙌 Special Thanks
-```
-To AWS documentation, the Spring community, and all open-source contributors whose tools made this project possible.
 ```
