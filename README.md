@@ -167,12 +167,6 @@ http://<external-ip>
 2. **Configure EKS Node Role**:
    - Ensure EKS worker nodes have permission to pull images from ECR.
 ---
-## 🖼 Screenshots
-
-### 📂 CI/CD Pipeline in Action
-![CI/CD](screenshots/cicd-pipeline.png)
-
----
 
 ## 🌟 Lambda Function 
 ![Screenshot 2025-04-14 173418](https://github.com/user-attachments/assets/f873cf4f-030a-4645-bb6e-70538950d9f0)
