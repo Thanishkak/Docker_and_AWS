@@ -33,7 +33,7 @@ WORKDIR /user/local/tomcat/webapps/
 COPY target/plantopia-0.0.1-SNAPSHOT.war plantopia.war
 EXPOSE 8080
 CMD ["catalina.sh","run"]
-```
+
 ```bash
 docker build -t plantopia .
 ```bash
@@ -52,7 +52,7 @@ minikube status
 
 ---
 
-### 🧱 2. Load Your Spring Boot Docker Image into Minikube
+### 🚀 2. Load Your Spring Boot Docker Image into Minikube
 
 Make sure you've built your Docker image:
 
@@ -168,19 +168,76 @@ spec:
 ```
 
 ---
+## ☸️ AWS EKS & IAM
+### ☁️ Step 1: Push Docker Image to Amazon ECR
 
-### 🛠 Step 1: Create EKS Cluster
+1. **🛠Create ECR Repository**: Go to AWS Console > ECR > Create Repository.
 
-Created using AWS Console:
-![Screenshot 2025-04-14 173001](https://github.com/user-attachments/assets/4468a09e-d65c-4df5-b4d3-e3579ac59cea)
+2. **Authenticate Docker:**
 
+```bash
+aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+```
 
-### ☸️ EKS Deployment
+3. **Tag & Push Image**:
 
-> ✅ Your Spring Boot app is now running on AWS EKS!
+```bash
+docker tag plantopia-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/plantopia-app:latest
+docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/plantopia-app:latest
+```
 
 ---
 
+### 🌟 Step 2: Create Your EKS Cluster
+
+**Using AWS Console**
+
+- Go to **EKS > Clusters > Create Cluster**.
+- Choose name (e.g., `plantopia-cluster`), IAM roles, VPC, subnets, etc.
+- Create Node Group.
+
+Create the cluster:
+
+```bash
+eksctl create cluster -f cluster-config.yaml
+```
+
+---
+
+### 🔧 **Step 3: Configure kubectl**
+
+```bash
+aws eks --region us-east-1 update-kubeconfig --name plantopia-cluster
+kubectl get nodes
+```
+
+---
+
+### 🚢 **Step 4: Deploy Your Spring Boot App on EKS**
+
+### 🌍 **Step 5: Access Your Spring Boot Application**
+
+```bash
+kubectl get svc
+```
+
+Wait for the external IP and access in the browser:
+
+```
+http://<external-ip>
+```
+
+---
+
+### 🛡️ **Step 6: IAM Roles & Permissions**
+
+1. **Create IAM Role for EKS**:
+   - Attach: **AmazonEKSClusterPolicy**, **AmazonEKSWorkerNodePolicy**, **AmazonEC2ContainerRegistryReadOnly**.
+
+2. **Configure EKS Node Role**:
+   - Ensure EKS worker nodes have permission to pull images from ECR.
+
+---
 ## 🖼 Screenshots
 
 ### 📂 CI/CD Pipeline in Action
