@@ -26,34 +26,155 @@ This microservice demonstrates a cloud-native architecture utilizing:
 | CI/CD Pipeline  | Automate build & deploy via AWS CodePipeline    |
 
 ```
-## 🔨 Build & Run
-
-🐳 Step 1: Dockerize the Application
+## 🔨 Build & Run Docker 
+```🐳 Dockerfile
+FROM tomcat:10.1-jdk17
+WORKDIR /user/local/tomcat/webapps/
+COPY target/plantopia-0.0.1-SNAPSHOT.war plantopia.war
+EXPOSE 8080
+CMD ["catalina.sh","run"]
 ```
 ```bash
 docker build -t plantopia .
 ```bash
-docker run -p plantopia
-
+docker run -p 8080:8080 plantopia
+```
 🧱 Docker Container Running images
+
+## 🌱 Minikube & Kubernetes
+
+### ⚙️ 1. Start Minikube
+
+```bash
+minikube start
+minikube status
 ```
 
-⚙️ Step 2: Push Docker Image to ECR
+---
 
+### 🧱 2. Load Your Spring Boot Docker Image into Minikube
 
-## ☁️ Kubernetes Deployment (AWS EKS)
+Make sure you've built your Docker image:
+
+```bash
+# Build your JAR file
+./mvnw clean package
+
+# Build Docker image (from project root where Dockerfile is)
+docker build -t plantopia-app .
+```
+
+Then load it into Minikube:
+
+```bash
+minikube image load plantopia-app
+```
+
+---
+
+### ⚙️ 3. Set `kubectl` Context to Minikube
+
+```bash
+kubectl config use-context minikube
+```
+
+---
+
+### ☁️ 4. Apply Kubernetes Deployment and Service
+
+> Make sure your YAML files are named something like `plantopia.deployment.yaml` and `plantopia.service.yaml`.
+
+```bash
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+---
+
+### 📝 6. Check Pods
+
+```bash
+kubectl get pods
+```
+
+---
+
+### ✅ 7. Get App URL (access from browser)
+
+```bash
+minikube service plantopia-service --url
+```
+
+---
+
+### 📝 8. View Logs (for debugging)
+
+```bash
+kubectl logs <pod-name>
+```
+
+You can get the pod name using:
+
+```bash
+kubectl get pods
+```
+
+---
+
+## 📝 Kubernetes YAML Files 
+
+### `deployment.yaml`
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plantopia
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: plantopia
+  template:
+    metadata:
+      labels:
+        app: plantopia
+    spec:
+      containers:
+      - name: plantopia
+        image: plantopia:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+```
+
+---
+
+### `service.yaml`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-app-service
+spec:
+  type: NodePort
+  selector:          
+    app: plantopia
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30007
+```
+
+---
 
 ### 🛠 Step 1: Create EKS Cluster
 
 Created using AWS Console:
 ![Screenshot 2025-04-14 173001](https://github.com/user-attachments/assets/4468a09e-d65c-4df5-b4d3-e3579ac59cea)
 
-### ⚙️ Step 2: Apply Kubernetes Manifests
 
-```bash
-kubectl apply -f deployment/deployment.yaml
-kubectl apply -f deployment/service.yaml
-```
 ### ☸️ EKS Deployment
 
 > ✅ Your Spring Boot app is now running on AWS EKS!
